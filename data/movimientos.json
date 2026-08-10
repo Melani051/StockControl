@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1783642420074",
+    "productoId": "1783642411558",
+    "tipo": "entrada",
+    "cantidad": 1,
+    "usuarioId": 1,
+    "fecha": "2026-07-10T00:13:40.074Z"
+  },
+  {
+    "id": "1783643432141",
+    "productoId": "1783642411558",
+    "tipo": "entrada",
+    "cantidad": 3,
+    "usuarioId": 1,
+    "fecha": "2026-07-10T00:30:32.141Z"
+  },
+  {
+    "id": "1783643443334",
+    "productoId": "1783642411558",
+    "tipo": "salida",
+    "cantidad": 1,
+    "usuarioId": 1,
+    "fecha": "2026-07-10T00:30:43.334Z"
+  },
+  {
+    "id": "1783645828357",
+    "productoId": "1783645724924",
+    "tipo": "salida",
+    "cantidad": 4,
+    "usuarioId": 1,
+    "fecha": "2026-07-10T01:10:28.357Z"
+  },
+  {
+    "id": "1783730479929",
+    "productoId": "1783645411546",
+    "tipo": "salida",
+    "cantidad": 3,
+    "usuarioId": 2,
+    "fecha": "2026-07-11T00:41:19.929Z"
+  },
+  {
+    "id": "1783732041504",
+    "productoId": "1783732026219",
+    "tipo": "salida",
+    "cantidad": 1,
+    "usuarioId": 1,
+    "fecha": "2026-07-11T01:07:21.504Z"
+  },
+  {
+    "id": "1783732114506",
+    "productoId": "1783732026219",
+    "tipo": "salida",
+    "cantidad": 4,
+    "usuarioId": 2,
+    "fecha": "2026-07-11T01:08:34.506Z"
+  },
+  {
+    "id": "1785465220410",
+    "productoId": "1785464221974",
+    "tipo": "salida",
+    "cantidad": 5,
+    "usuarioId": 3,
+    "fecha": "2026-07-31T02:33:40.410Z"
+  }
+]

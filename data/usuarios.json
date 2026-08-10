@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "nombre": "Administrador",
+    "usuario": "admin",
+    "password": "1234",
+    "rol": "Administrador"
+  },
+  {
+    "id": 2,
+    "nombre": "Usuario",
+    "usuario": "usuario",
+    "password": "1234",
+    "rol": "Usuario"
+  },
+  {
+    "id": 3,
+    "nombre": "Melani Zermeño",
+    "usuario": "Mel Zer",
+    "password": "230167",
+    "rol": "Usuario",
+    "fechaRegistro": "2026-07-31T01:49:22.987Z"
+  }
+]

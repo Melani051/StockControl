@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StockControl</title>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>StockControl</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/productos.html">Productos</a>
+      <a href="/movimientos.html">Movimientos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="cards">
+      <article class="card">
+        <h3>Total de productos</h3>
+        <p id="totalProductos">0</p>
+      </article>
+      <article class="card">
+        <h3>Cantidad total en inventario</h3>
+        <p id="totalInventario">0</p>
+      </article>
+      <article class="card">
+        <h3>Productos con bajo stock</h3>
+        <p id="bajoStock">0</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Últimos movimientos</h2>
+      <ul id="ultimosMovimientos"></ul>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
