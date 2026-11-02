@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7f5">
+    <title>StockControl | Inventario</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="StockControl, inicio">
+          <span class="brand-mark" aria-hidden="true">SC</span>
+          <span>StockControl</span>
+        </a>
+        <span class="topbar-label">Panel de inventario</span>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Tu negocio, bajo control</p>
+          <h1 id="page-title">Inventario</h1>
+          <p class="intro-copy">Consulta tus productos y mantén tus existencias al día.</p>
+        </div>
+        <div class="summary-card">
+          <span class="summary-icon" aria-hidden="true">$</span>
+          <div>
+            <p>Valor total del inventario</p>
+            <strong id="total-value" aria-live="polite">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+      <section class="workspace" aria-label="Administración de productos">
+        <aside class="form-card">
+          <div class="section-heading">
+            <span class="heading-icon" aria-hidden="true">＋</span>
+            <div>
+              <h2>Agregar producto</h2>
+              <p>Registra un artículo nuevo</p>
+            </div>
+          </div>
+          <form id="product-form">
+            <label for="product-name">Nombre del producto</label>
+            <input id="product-name" name="name" type="text" placeholder="Ej. Teclado inalámbrico" required>
+            <div class="form-row">
+              <div>
+                <label for="product-price">Precio</label>
+                <div class="input-prefix">
+                  <span>$</span>
+                  <input id="product-price" name="price" type="number" min="0" step="0.01" placeholder="0.00" required>
+                </div>
+              </div>
+              <div>
+                <label for="product-stock">Existencias</label>
+                <input id="product-stock" name="stock" type="number" min="0" step="1" placeholder="0" required>
+              </div>
+            </div>
+            <button class="button button-primary submit-button" type="submit">Agregar al inventario <span aria-hidden="true">→</span></button>
+          </form>
+        </aside>
+
+        <section class="products-card" aria-labelledby="products-title">
+          <div class="products-heading">
+            <div class="section-heading">
+              <span class="heading-icon heading-icon-green" aria-hidden="true">▦</span>
+              <div>
+                <h2 id="products-title">Productos</h2>
+                <p><span id="product-count">0</span> artículos registrados</p>
+              </div>
+            </div>
+            <label class="search-box">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <span class="visually-hidden">Buscar producto por nombre</span>
+              <input id="search" type="search" placeholder="Buscar producto...">
+            </label>
+          </div>
+
+          <div id="product-list" class="product-list" aria-live="polite"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <span aria-hidden="true">▤</span>
+            <strong>Aún no hay productos</strong>
+            <p>Agrega tu primer producto para comenzar.</p>
+          </div>
+          <div id="no-results" class="empty-state" hidden>
+            <strong>No encontramos productos</strong>
+            <p>Prueba con otro nombre de búsqueda.</p>
+          </div>
+          <p class="low-stock-note"><span class="status-dot" aria-hidden="true"></span> Existencias bajas: 5 unidades o menos</p>
+        </section>
+      </section>
+
+      <footer>StockControl <span aria-hidden="true">·</span> Inventario simple, siempre al día.</footer>
+    </main>
+  </body>
+</html>

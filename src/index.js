@@ -1,11 +1,7 @@
 // Demostración de StockControl por línea de comandos.
-const Inventory = require('./inventory');
+const createDefaultInventory = require('./default-inventory');
 
-const inventory = new Inventory();
-
-inventory.addProduct('Laptop', 12000, 5);
-inventory.addProduct('Mouse', 250, 20);
-inventory.addProduct('Teclado', 450, 3);
+const inventory = createDefaultInventory();
 
 inventory.updateStock('Mouse', -5); // se venden 5 mouse
 inventory.updateStock('Teclado', 10); // llegan 10 teclados

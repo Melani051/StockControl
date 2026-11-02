@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
+    "web": "node src/server.js",
     "test": "node --test"
   },
   "author": "Melani Judith Zermeño Yáñez",

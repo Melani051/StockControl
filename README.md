@@ -29,9 +29,15 @@ StockControl/
 ├── .github/workflows/ci.yml   # Flujo de integración continua
 ├── src/
 │   ├── inventory.js           # Lógica del inventario
-│   └── index.js               # Programa de demostración
+│   ├── index.js               # Programa de demostración
+│   └── server.js              # Servidor web y API
+├── public/
+│   ├── index.html             # Interfaz web
+│   ├── styles.css             # Estilos adaptables
+│   └── app.js                 # Interacción con la API
 ├── test/
-│   └── inventory.test.js      # Pruebas automáticas
+│   ├── inventory.test.js      # Pruebas de la lógica
+│   └── server.test.js         # Pruebas de la API
 ├── .gitignore
 ├── package.json
 └── README.md
@@ -49,6 +55,15 @@ npm test       # ejecuta las pruebas automáticas
 ```
 
 No requiere instalar dependencias.
+
+## Interfaz web
+
+Ejecuta `npm run web` y abre [http://localhost:3000](http://localhost:3000).
+El inventario inicia con Laptop (5 unidades), Mouse (20) y Teclado (3).
+La interfaz permite consultar productos, agregar artículos, buscar por nombre,
+registrar entradas y salidas de existencias con los botones + y −, y ver el
+valor total del inventario. Los productos con 5 unidades o menos se resaltan;
+los errores de validación se muestran directamente en la página.
 
 ## Integración continua
 
