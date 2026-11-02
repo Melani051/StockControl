@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movimientos - StockControl</title>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>StockControl</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/productos.html">Productos</a>
+      <a href="/movimientos.html">Movimientos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Registrar movimiento</h2>
+      <form id="movimientoForm">
+        <select id="productoId" required></select>
+        <select id="tipo" required>
+          <option value="entrada">Entrada</option>
+          <option value="salida">Salida</option>
+        </select>
+        <input type="number" id="cantidadMovimiento" placeholder="Cantidad" required />
+        <button type="submit">Guardar movimiento</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Historial de movimientos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="tablaMovimientos"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

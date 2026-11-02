@@ -1,6 +1,7 @@
 {
   "name": "stockcontrol",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "Sistema básico de control de inventario por línea de comandos",
   "main": "src/index.js",
   "scripts": {
@@ -11,4 +12,25 @@
   "author": "Melani Judith Zermeño Yáñez",
   "license": "ISC",
   "engines": { "node": ">=18" }
+=======
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "inventory"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Aplicación de control de inventario con Node.js, Express y archivos JSON",
+  "dependencies": {
+    "express": "^4.22.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+>>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
 }

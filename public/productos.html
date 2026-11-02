@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos - StockControl</title>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>StockControl</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/productos.html">Productos</a>
+      <a href="/movimientos.html">Movimientos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section panel-card">
+      <div class="section-header">
+        <div>
+          <p class="section-eyebrow">Gestión de inventario</p>
+          <h2>Registrar producto</h2>
+        </div>
+        <span class="section-pill">Nuevo ingreso</span>
+      </div>
+      <form id="productoForm" class="product-form">
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="codigoBarras">Código de barras</label>
+            <div style="display:flex;gap:.5rem;align-items:center;">
+              <input type="text" id="codigoBarras" placeholder="Código de barras" />
+              <button type="button" id="buscarOpenFood">Buscar información</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" placeholder="Marca" />
+          </div>
+          <div class="field-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Nombre del producto" required />
+          </div>
+          <div class="field-group">
+            <label for="categoria">Categoría</label>
+            <input type="text" id="categoria" placeholder="Categoría" required />
+          </div>
+          <div class="field-group full-width">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" placeholder="Describe el producto"></textarea>
+          </div>
+          <div class="field-group">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" placeholder="Precio" step="0.01" required />
+          </div>
+          <div class="field-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" placeholder="Cantidad" required />
+          </div>
+          <div class="field-group">
+            <label for="proveedor">Proveedor</label>
+            <input type="text" id="proveedor" placeholder="Proveedor" required />
+          </div>
+          <div class="field-group full-width">
+            <label for="imagen">Imagen (URL)</label>
+            <input type="text" id="imagen" placeholder="URL de la imagen" />
+            <img id="imagenPreview" src="" alt="" style="max-width:120px;margin-top:.5rem;display:none;border-radius:8px;" />
+          </div>
+          <div class="field-group">
+            <label for="usuarioId">Asignar usuario</label>
+            <select id="usuarioId" name="usuarioId">
+              <option value="" disabled selected > Seleccionar usuario </option>
+            </select
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Guardar producto</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="table-section panel-card">
+      <div class="section-header">
+        <div>
+          <h2>Lista de productos</h2>
+        </div>
+      </div>
+      <div id="buscadorProductos" style="display:none; margin-bottom:1rem;">
+        <input type="text" id="buscadorProductosInput" placeholder="Buscar por ID, nombre o proveedor" style="width:100%;max-width:420px;padding:.7rem;border:1px solid #cbd5e1;border-radius:8px;" />
+      </div>
+      <div class="table-wrapper">
+        <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Proveedor</th>
+            <th data-col="usuario">Usuario</th>
+            <th data-col="acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaProductos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/openfood.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

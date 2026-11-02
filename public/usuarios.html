@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Usuarios - StockControl</title>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>StockControl</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/productos.html">Productos</a>
+      <a href="/movimientos.html">Movimientos</a>
+      <a href="/usuarios.html">Usuarios</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Crear nuevo usuario</h2>
+      <form id="usuarioForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" required />
+        <input type="text" id="usuario" placeholder="Nombre de usuario" required />
+        <input type="password" id="password" placeholder="Contraseña (mínimo 8 caracteres)" required minlength="8" />
+        <small style="margin-top:-0.25rem;display:block;color:#64748b;">La contraseña debe tener al menos 8 caracteres.</small>
+        <select id="rol" required>
+          <option value="" disabled selected >Seleccionar rol...</option>
+          <option value="Administrador">Administrador</option>
+          <option value="Usuario">Usuario</option>
+        </select>
+        <button type="submit">Crear usuario</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Lista de usuarios</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Rol</th>
+            <th>Fecha de Registro</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaUsuarios"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/usuarios-script.js"></script>
+</body>
+</html>

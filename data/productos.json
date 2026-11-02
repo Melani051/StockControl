@@ -1,0 +1,49 @@
+[
+  {
+    "id": "1783645411546",
+    "nombre": "Celular",
+    "categoria": "Tecnología",
+    "descripcion": "motorola",
+    "precio": 3000,
+    "cantidad": 2,
+    "proveedor": "motorlola",
+    "usuarioId": 2,
+    "fechaRegistro": "2026-07-10T01:03:31.546Z"
+  },
+  {
+    "id": "1783732026219",
+    "nombre": "Laptop Dell XPS",
+    "categoria": "Tecnología",
+    "descripcion": "dell",
+    "precio": 3000,
+    "cantidad": 0,
+    "proveedor": "15",
+    "usuarioId": 2,
+    "fechaRegistro": "2026-07-11T01:07:06.219Z"
+  },
+  {
+    "id": "1785464221974",
+    "nombre": "Auriculares",
+    "categoria": "Tecnología",
+    "descripcion": "Azules",
+    "precio": 12000,
+    "cantidad": 11,
+    "proveedor": "Mac",
+    "usuarioId": 3,
+    "fechaRegistro": "2026-07-31T02:17:01.974Z"
+  },
+  {
+    "id": "1786404215328",
+    "nombre": "Auriculares",
+    "categoria": "Tecnología",
+    "descripcion": "Auriculars inalambricos",
+    "codigoBarras": "",
+    "marca": "Mac",
+    "imagen": "",
+    "precio": 3000,
+    "cantidad": 165,
+    "proveedor": "Mac",
+    "usuarioId": 2,
+    "fechaRegistro": "2026-08-10T23:23:35.328Z"
+  }
+]

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - StockControl</title>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>StockControl</h1>
+    <nav id="menuRol"></nav>
+  </header>
+
+  <main>
+    <h2 id="bienvenida"></h2>
+    <section class="cards">
+      <article class="card">
+        <h3>Total de productos</h3>
+        <p id="totalProductos">0</p>
+      </article>
+      <article class="card">
+        <h3>Cantidad total en inventario</h3>
+        <p id="totalInventario">0</p>
+      </article>
+      <article class="card">
+        <h3>Productos con bajo stock</h3>
+        <p id="bajoStock">0</p>
+      </article>
+    </section>
+    <section id="alertasStock" class="panel-card" style="margin-top:1rem;">
+      <!-- Aquí se mostrarán alertas de productos con stock bajo -->
+    </section>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
