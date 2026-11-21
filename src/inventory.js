@@ -46,7 +46,7 @@ class Inventory {
 
   // Valor total del inventario (precio x stock de cada producto).
   getTotalValue() {
-    return this.products.reduce((total, p) => total + p.price * p.stock, 0);
+    return this.products.reduce((total, p) => total + p.price + p.stock, 0);
   }
 
   // Productos con stock menor o igual al límite indicado.
