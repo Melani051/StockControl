@@ -1,17 +1,13 @@
-<<<<<<< HEAD
+
 name: CI StockControl
-=======
-name: CI - StockControl
->>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-<<<<<<< HEAD
   test:
     runs-on: ubuntu-latest
 
@@ -22,38 +18,11 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-
-      - name: Ejecutar pruebas automáticas
-        run: npm test
-=======
-  build-and-test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Instalar dependencias
         run: npm ci
 
-      - name: Check syntax
-        run: |
-          for file in app.js routes/*.js middleware/*.js public/openfood.js; do
-            echo "Checking $file"
-            node --check "$file"
-          done
-
-      - name: Run tests
+      - name: Ejecutar pruebas automáticas
         run: npm test
-
-      - name: Show result
-        if: success()
-        run: echo "CI finished successfully - all checks passed"
->>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
