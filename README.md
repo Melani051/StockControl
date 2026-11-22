@@ -1,131 +1,128 @@
+
 # StockControl
 
-<<<<<<< HEAD
-Sistema básico de control de inventario por línea de comandos.
+Sistema web de control de inventario desarrollado con Node.js y Express, utilizando archivos JSON para almacenar la información.
 
-**Autora:** Melani Judith Zermeño Yáñez — Matrícula 230167 — 9°D IDGS  
-**Materia:** Desarrollo Web Integral — Universidad Tecnológica de Aguascalientes
+El proyecto está orientado a pequeños negocios que necesitan organizar sus productos, controlar sus existencias y registrar movimientos de inventario.
 
 ## Objetivo
 
-Registrar productos, actualizar su stock, calcular el valor total del inventario
-y detectar productos con poco stock, usando control de versiones (Git/GitHub) e
-integración continua (GitHub Actions) para validar el código automáticamente.
+Facilitar la administración del inventario mediante una aplicación que permita registrar productos, consultar existencias, controlar entradas y salidas y gestionar usuarios.
 
-## Herramientas utilizadas
+## Funcionalidades principales
 
-| Herramienta | Uso |
+- Inicio de sesión con diferentes roles de usuario.
+- Administración de productos: alta, edición, consulta y eliminación.
+- Registro de entradas y salidas de inventario.
+- Consulta de existencias disponibles.
+- Administración de usuarios.
+- Búsqueda de productos por código de barras o ID.
+- Control de permisos según el tipo de usuario.
+
+## Tecnologías y herramientas
+
+| Tecnología | Uso |
 |---|---|
-| Node.js 20 | Lenguaje / entorno de ejecución |
+| Node.js | Entorno de ejecución |
+| Express | Desarrollo del servidor y API |
+| JavaScript | Lenguaje de programación |
+| Archivos JSON | Almacenamiento de información |
+| npm | Administración de dependencias |
+| node:test | Pruebas automatizadas |
 | Git | Control de versiones |
 | GitHub | Repositorio remoto |
 | GitHub Actions | Integración continua |
-| node:test | Pruebas automáticas (incluido en Node.js) |
 | Visual Studio Code | Editor de código |
-=======
-![CI](https://github.com/Melani051/StockControl/actions/workflows/ci.yml/badge.svg)
-
-Aplicación web de control de inventario desarrollada con **Node.js**, **Express** y archivos **JSON** como almacenamiento. Permite administrar productos, registrar movimientos de entrada y salida, y gestionar usuarios con distintos roles.
-
-## Funcionalidades
-
-- Inicio de sesión con roles (administrador y usuario).
-- Alta, edición, búsqueda y eliminación de productos.
-- Registro de movimientos de inventario.
-- Administración de usuarios (solo administrador).
-- Búsqueda de productos por código de barras o ID.
->>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
 
 ## Estructura del proyecto
 
-```
+```text
 StockControl/
-<<<<<<< HEAD
-├── .github/workflows/ci.yml   # Flujo de integración continua
-├── src/
-│   ├── inventory.js           # Lógica del inventario
-│   ├── index.js               # Programa de demostración
-│   └── server.js              # Servidor web y API
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── data/
+├── middleware/
 ├── public/
-│   ├── index.html             # Interfaz web
-│   ├── styles.css             # Estilos adaptables
-│   └── app.js                 # Interacción con la API
+├── routes/
 ├── test/
-│   ├── inventory.test.js      # Pruebas de la lógica
-│   └── server.test.js         # Pruebas de la API
 ├── .gitignore
+├── app.js
 ├── package.json
+├── package-lock.json
+├── SISTEMA_AUTENTICACION.md
 └── README.md
-```
-
-## Instrucciones de ejecución
-
-Requisito: tener instalado [Node.js](https://nodejs.org/) 18 o superior.
-=======
-├── app.js              # Archivo principal (servidor Express)
-├── routes/             # Rutas: auth, productos, movimientos, usuarios
-├── middleware/         # Autenticación y permisos
-├── data/               # Archivos JSON (productos, movimientos, usuarios)
-├── public/             # Interfaz web (HTML, CSS, JS)
-├── test/               # Pruebas automatizadas
-└── .github/workflows/  # Integración continua (GitHub Actions)
 ```
 
 ## Requisitos
 
-- Node.js 20 o superior
+- Node.js
 - npm
 
-## Instalación y uso
->>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
+## Instalación
+
+Clonar el repositorio:
 
 ```bash
 git clone https://github.com/Melani051/StockControl.git
-cd StockControl
-<<<<<<< HEAD
-npm start      # ejecuta el programa
-npm test       # ejecuta las pruebas automáticas
 ```
 
-No requiere instalar dependencias.
+Entrar a la carpeta:
 
-## Interfaz web
+```bash
+cd StockControl
+```
 
-Ejecuta `npm run web` y abre [http://localhost:3000](http://localhost:3000).
-El inventario inicia con Laptop (5 unidades), Mouse (20) y Teclado (3).
-La interfaz permite consultar productos, agregar artículos, buscar por nombre,
-registrar entradas y salidas de existencias con los botones + y −, y ver el
-valor total del inventario. Los productos con 5 unidades o menos se resaltan;
-los errores de validación se muestran directamente en la página.
+Instalar las dependencias:
 
-## Integración continua
+```bash
+npm ci
+```
 
-Cada vez que se hace `push` a la rama `main`, GitHub Actions ejecuta
-`npm test`. Si alguna prueba falla, el flujo se marca en rojo.
-=======
-npm install
+## Ejecución
+
+Iniciar la aplicación:
+
+```bash
 npm start
 ```
 
-La aplicación se ejecuta en `http://localhost:3000`.
+Abrir en el navegador:
 
-## Pruebas
+```text
+http://localhost:3000
+```
+
+## Pruebas automatizadas
+
+Para ejecutar las pruebas del proyecto:
 
 ```bash
 npm test
 ```
 
+Las pruebas permiten comprobar el funcionamiento de la lógica del inventario y de los servicios del servidor.
+
 ## Integración continua
 
-Cada `push` o `pull request` hacia `main` ejecuta el flujo definido en `.github/workflows/ci.yml`:
+El proyecto utiliza GitHub Actions para validar automáticamente los cambios.
 
-1. Obtener el código (checkout).
-2. Preparar Node.js e instalar dependencias (`npm ci`).
-3. Verificar la sintaxis de los archivos JavaScript.
-4. Ejecutar las pruebas (`npm test`).
-5. Mostrar el resultado.
+El flujo se ejecuta cuando se realiza un `push` o se crea un `pull request` hacia la rama `main`.
+
+Las actividades principales del flujo son:
+
+1. Descargar el código del repositorio.
+2. Configurar Node.js.
+3. Instalar las dependencias con `npm ci`.
+4. Ejecutar las pruebas mediante `npm test`.
+5. Mostrar el resultado de la validación.
+
+Cuando alguna prueba falla, GitHub Actions identifica el problema y marca la ejecución como fallida.
 
 ## Documentación adicional
 
-Consulta [SISTEMA_AUTENTICACION.md](SISTEMA_AUTENTICACION.md) para conocer cómo funciona la autenticación.
->>>>>>> 2b8984a69e78ef40e610bafbdf87f39fb6930b4e
+Consulta el archivo `SISTEMA_AUTENTICACION.md` para obtener información adicional sobre la autenticación del sistema.
+
+## Repositorio
+
+https://github.com/Melani051/StockControl
