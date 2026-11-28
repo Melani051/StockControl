@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { version } = require("./package.json");
 const productosRoutes = require("./routes/productos");
 const movimientosRoutes = require("./routes/movimientos");
 const usuariosRoutes = require("./routes/usuarios");
@@ -8,6 +9,17 @@ const { verificarAutenticacion, verificarAdmin } = require("./middleware/auth");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV === "production") {
+  const variablesRequeridas = ["SESSION_SECRET", "ADMIN_USERNAME", "ADMIN_PASSWORD"];
+  const faltantes = variablesRequeridas.filter((nombre) => !process.env[nombre]);
+  if (faltantes.length) {
+    throw new Error(`Faltan variables de entorno requeridas: ${faltantes.join(", ")}`);
+  }
+  if (process.env.ADMIN_PASSWORD.length < 12) {
+    throw new Error("ADMIN_PASSWORD debe tener al menos 12 caracteres en producción");
+  }
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +34,14 @@ app.use("/api/usuarios", usuariosRoutes);
 // Proteger rutas de productos y movimientos
 app.use("/productos", verificarAutenticacion, productosRoutes);
 app.use("/movimientos", verificarAutenticacion, movimientosRoutes);
+
+app.get("/health", (_req, res) => {
+  res.json({ estado: "ok" });
+});
+
+app.get("/version", (_req, res) => {
+  res.json({ version });
+});
 
 // Ruta principal
 app.get("/", (req, res) => {

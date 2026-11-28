@@ -24,5 +24,11 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
+      - name: Comprobar sintaxis JavaScript
+        run: |
+          for file in app.js lib/*.js middleware/*.js routes/*.js public/*.js src/*.js; do
+            node --check "$file"
+          done
+
       - name: Ejecutar pruebas automáticas
         run: npm test

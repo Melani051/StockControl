@@ -1,19 +1,8 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const { verificarAutenticacion, verificarAdmin } = require("../middleware/auth");
+const { leerUsuarios, guardarUsuarios } = require("../lib/usuarios");
 
 const router = express.Router();
-const usuariosPath = path.join(__dirname, "..", "data", "usuarios.json");
-
-function leerUsuarios() {
-  const data = fs.readFileSync(usuariosPath, "utf8");
-  return JSON.parse(data);
-}
-
-function guardarUsuarios(usuarios) {
-  fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
-}
 
 // Obtener todos los usuarios (solo admin)
 router.get("/", verificarAutenticacion, verificarAdmin, (req, res) => {
@@ -46,7 +35,7 @@ router.post("/", verificarAutenticacion, verificarAdmin, (req, res) => {
   }
 
   const nuevoUsuario = {
-    id: Math.max(...usuarios.map((u) => u.id), 0) + 1,
+    id: Math.max(3, ...usuarios.map((u) => u.id)) + 1,
     nombre,
     usuario,
     password, // En producción, esto debería estar encriptado
@@ -93,6 +82,10 @@ router.delete("/:id", verificarAutenticacion, verificarAdmin, (req, res) => {
 
   // Evitar que se elimine el último administrador
   const usuarioAEliminar = usuarios[usuarioIndex];
+  if (process.env.NODE_ENV === "production" && usuarioAEliminar.id === 1) {
+    return res.status(400).json({ mensaje: "No se puede eliminar el administrador configurado" });
+  }
+
   if (usuarioAEliminar.rol === "Administrador") {
     const admins = usuarios.filter((u) => u.rol === "Administrador");
     if (admins.length === 1) {
@@ -118,6 +111,10 @@ router.put("/:id", verificarAutenticacion, (req, res) => {
   // Un usuario solo puede actualizar su propia información
   if (req.usuarioId !== req.params.id && req.usuarioRol !== "Administrador") {
     return res.status(403).json({ mensaje: "No tienes permiso para actualizar este usuario" });
+  }
+
+  if (process.env.NODE_ENV === "production" && usuarios[usuarioIndex].id === 1) {
+    return res.status(400).json({ mensaje: "El administrador configurado se modifica en el entorno de despliegue" });
   }
 
   const { nombre, password } = req.body;

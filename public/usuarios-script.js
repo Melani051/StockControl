@@ -7,19 +7,20 @@ function obtenerUsuarioActual() {
 // Obtener headers de autenticación
 function obtenerHeadersAutenticacion() {
   const usuario = obtenerUsuarioActual();
-  if (!usuario) {
+  const token = localStorage.getItem('tokenAcceso');
+  if (!usuario || !token) {
     return {};
   }
 
   return {
-    'x-usuario-id': usuario.id.toString(),
-    'x-usuario-rol': usuario.rol
+    Authorization: `Bearer ${token}`
   };
 }
 
 // Realizar logout
 async function realizarLogout() {
   localStorage.removeItem('usuarioActual');
+  localStorage.removeItem('tokenAcceso');
   await fetch('/api/auth/logout', { method: 'POST' });
   window.location.href = '/login.html';
 }

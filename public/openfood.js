@@ -8,11 +8,11 @@
   function obtenerHeadersAutenticacion() {
     try {
       const usuario = JSON.parse(localStorage.getItem('usuarioActual') || 'null');
-      if (!usuario) return {};
+      const token = localStorage.getItem('tokenAcceso');
+      if (!usuario || !token) return {};
 
       return {
-        'x-usuario-id': String(usuario.id),
-        'x-usuario-rol': usuario.rol
+        Authorization: `Bearer ${token}`
       };
     } catch (error) {
       return {};

@@ -1,128 +1,61 @@
-
 # StockControl
 
-Sistema web de control de inventario desarrollado con Node.js y Express, utilizando archivos JSON para almacenar la información.
+Aplicación web de inventario para pequeños negocios, desarrollada con Node.js, Express y archivos JSON.
 
-El proyecto está orientado a pequeños negocios que necesitan organizar sus productos, controlar sus existencias y registrar movimientos de inventario.
+## Funciones
 
-## Objetivo
-
-Facilitar la administración del inventario mediante una aplicación que permita registrar productos, consultar existencias, controlar entradas y salidas y gestionar usuarios.
-
-## Funcionalidades principales
-
-- Inicio de sesión con diferentes roles de usuario.
-- Administración de productos: alta, edición, consulta y eliminación.
+- Inicio de sesión y permisos por rol.
+- Alta, consulta, edición y eliminación de productos.
 - Registro de entradas y salidas de inventario.
-- Consulta de existencias disponibles.
+- Consulta de existencias y alertas de bajo stock.
 - Administración de usuarios.
-- Búsqueda de productos por código de barras o ID.
-- Control de permisos según el tipo de usuario.
+- Búsqueda por código de barras o ID.
+- Resumen del valor del inventario en el módulo de demostración.
 
-## Tecnologías y herramientas
-
-| Tecnología | Uso |
-|---|---|
-| Node.js | Entorno de ejecución |
-| Express | Desarrollo del servidor y API |
-| JavaScript | Lenguaje de programación |
-| Archivos JSON | Almacenamiento de información |
-| npm | Administración de dependencias |
-| node:test | Pruebas automatizadas |
-| Git | Control de versiones |
-| GitHub | Repositorio remoto |
-| GitHub Actions | Integración continua |
-| Visual Studio Code | Editor de código |
-
-## Estructura del proyecto
+## Estructura
 
 ```text
 StockControl/
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-├── data/
-├── middleware/
-├── public/
-├── routes/
-├── test/
-├── .gitignore
+├── .github/workflows/ci.yml
+├── data/                 # Datos JSON de demostración
+├── lib/                  # Acceso a usuarios
+├── middleware/           # Autenticación y permisos
+├── public/               # Interfaz web
+├── routes/               # API Express
+├── src/                  # Módulo Inventory y servidor de demostración
+├── test/                 # Pruebas automatizadas
 ├── app.js
+├── CHANGELOG.md
+├── DESPLIEGUE_CONTINUO.md
 ├── package.json
 ├── package-lock.json
+├── render.yaml            # Blueprint de despliegue
 ├── SISTEMA_AUTENTICACION.md
 └── README.md
 ```
 
-## Requisitos
+## Requisitos y uso local
 
-- Node.js
+- Node.js 20 o superior
 - npm
-
-## Instalación
-
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/Melani051/StockControl.git
-```
-
-Entrar a la carpeta:
-
-```bash
-cd StockControl
-```
-
-Instalar las dependencias:
 
 ```bash
 npm ci
-```
-
-## Ejecución
-
-Iniciar la aplicación:
-
-```bash
 npm start
 ```
 
-Abrir en el navegador:
-
-```text
-http://localhost:3000
-```
-
-## Pruebas automatizadas
-
-Para ejecutar las pruebas del proyecto:
+La aplicación abre en `http://localhost:3000`. Para ejecutar las pruebas:
 
 ```bash
 npm test
 ```
 
-Las pruebas permiten comprobar el funcionamiento de la lógica del inventario y de los servicios del servidor.
+## Liberación y despliegue continuo
 
-## Integración continua
+El proyecto se prepara para publicarse como servicio web en Render mediante el archivo `render.yaml`. Render ejecuta `npm ci` y `npm start`, comprueba `/health` y despliega cambios de `main` después de que pasen las validaciones de CI.
 
-El proyecto utiliza GitHub Actions para validar automáticamente los cambios.
+Para crear el servicio, conecta el repositorio en Render e importa el Blueprint. Durante la configuración define `ADMIN_USERNAME` y `ADMIN_PASSWORD`; usa una contraseña de al menos 12 caracteres. Render genera `SESSION_SECRET` automáticamente. No guardes esos valores en Git.
 
-El flujo se ejecuta cuando se realiza un `push` o se crea un `pull request` hacia la rama `main`.
+El Blueprint usa el plan gratuito. Los servicios gratuitos pueden suspenderse después de inactividad y su sistema de archivos no es persistente: los cambios en los archivos JSON pueden perderse al reiniciarse o desplegarse el servicio. Usa únicamente datos de demostración. Para conservar datos entre reinicios se requiere una base de datos o un servicio con almacenamiento persistente.
 
-Las actividades principales del flujo son:
-
-1. Descargar el código del repositorio.
-2. Configurar Node.js.
-3. Instalar las dependencias con `npm ci`.
-4. Ejecutar las pruebas mediante `npm test`.
-5. Mostrar el resultado de la validación.
-
-Cuando alguna prueba falla, GitHub Actions identifica el problema y marca la ejecución como fallida.
-
-## Documentación adicional
-
-Consulta el archivo `SISTEMA_AUTENTICACION.md` para obtener información adicional sobre la autenticación del sistema.
-
-## Repositorio
-
-https://github.com/Melani051/StockControl
+Consulta [DESPLIEGUE_CONTINUO.md](DESPLIEGUE_CONTINUO.md) para el procedimiento y la evidencia de la liberación.

@@ -167,34 +167,25 @@ Sistema completo de autenticación del lado cliente:
 ## 🔐 Sistema de Sesión
 
 ### Método de Almacenamiento
-- **Cliente**: localStorage (usuario y rol)
-- **Servidor**: Headers HTTP (x-usuario-id, x-usuario-rol)
+- **Cliente**: `localStorage` guarda el perfil y un token de acceso firmado.
+- **Servidor**: valida el token HMAC enviado como `Authorization: Bearer ...`; vence a las 8 horas.
+- **Producción**: `SESSION_SECRET`, `ADMIN_USERNAME` y `ADMIN_PASSWORD` se configuran como variables de entorno. El administrador inicial no usa las credenciales de demostración del archivo JSON.
 
 ### Flujo de Autenticación
 
-```
-1. Usuario ingresa credenciales en login.html
-   ↓
-2. Frontend hace POST a /api/auth/login
-   ↓
-3. Backend valida en data/usuarios.json
-   ↓
-4. Si es correcto, retorna datos del usuario
-   ↓
-5. Frontend guarda en localStorage
-   ↓
-6. Redirige a dashboard (index.html)
-   ↓
-7. Todas las llamadas incluyen headers de autenticación
-```
+1. El usuario envía sus credenciales a `POST /api/auth/login`.
+2. El backend compara las credenciales y devuelve el perfil y el token firmado.
+3. El cliente guarda ambos valores en `localStorage`.
+4. Las solicitudes protegidas envían el token en el encabezado `Authorization`.
+5. El middleware valida la firma, el vencimiento y el rol antes de atender la ruta.
+6. El token vence después de ocho horas; al cerrar sesión, el cliente lo elimina.
 
 ### Validación en Backend
 
-Cada ruta protegida:
-1. Valida presencia de headers (x-usuario-id, x-usuario-rol)
-2. Valida permisos según el rol
-3. Retorna 401 si no está autenticado
-4. Retorna 403 si no tiene permisos
+- No se aceptan `x-usuario-id` ni `x-usuario-rol` como prueba de identidad.
+- Una solicitud sin token válido recibe `401`.
+- Una solicitud autenticada sin permiso recibe `403`.
+- El secreto de producción no se almacena en el repositorio.
 
 ---
 
@@ -243,14 +234,10 @@ Luego acceder a: http://localhost:3000/
 ## 📝 Notas Importantes
 
 ### Seguridad en Producción
-⚠️ **IMPORTANTE**: 
 
-- Las contraseñas están guardadas en texto plano (solo para demo)
-- En producción, usar bcrypt para encriptar contraseñas
-- Usar cookies con HttpOnly y Secure
-- Implementar JWT para mejor gestión de sesiones
-- Usar HTTPS obligatoriamente
-- Implementar CSRF protection
+- Render requiere una contraseña de administrador configurada fuera del repositorio y un secreto de sesión generado por la plataforma.
+- Las contraseñas de las cuentas creadas dentro de la aplicación aún se guardan como texto en el archivo JSON; este proyecto es una demostración académica y no debe almacenar credenciales reales.
+- Para un sistema de producción, almacenar contraseñas con un algoritmo de derivación adecuado y mover los datos a una base administrada.
 
 ### Persistencia de Datos
 - Los datos se guardan en archivos JSON en la carpeta `data/`

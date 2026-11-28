@@ -14,23 +14,27 @@ function guardarUsuarioActual(usuario) {
   localStorage.setItem('usuarioActual', JSON.stringify(usuario));
 }
 
+function obtenerTokenAcceso() {
+  return localStorage.getItem('tokenAcceso');
+}
+
 // Obtener headers de autenticación
 function obtenerHeadersAutenticacion() {
   const usuario = obtenerUsuarioActual();
-  if (!usuario) {
+  const token = obtenerTokenAcceso();
+  if (!usuario || !token) {
     return {};
   }
 
   return {
-    'x-usuario-id': usuario.id.toString(),
-    'x-usuario-rol': usuario.rol
+    Authorization: `Bearer ${token}`
   };
 }
 
 // Verificar si el usuario está autenticado
 function verificarAutenticacion() {
   const usuario = obtenerUsuarioActual();
-  if (!usuario) {
+  if (!usuario || !obtenerTokenAcceso()) {
     // Si no está autenticado, redirigir a login
     if (window.location.pathname !== '/login.html') {
       window.location.href = '/login.html';
@@ -65,6 +69,7 @@ async function realizarLogin(event) {
 
     // Guardar usuario en localStorage
     guardarUsuarioActual(data.usuario);
+    localStorage.setItem('tokenAcceso', data.token);
 
     // Redirigir al dashboard
     window.location.href = '/';
@@ -78,6 +83,7 @@ async function realizarLogin(event) {
 // Logout
 async function realizarLogout() {
   localStorage.removeItem('usuarioActual');
+  localStorage.removeItem('tokenAcceso');
   await fetch('/api/auth/logout', { method: 'POST' });
   window.location.href = '/login.html';
 }
