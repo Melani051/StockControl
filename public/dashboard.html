@@ -9,7 +9,11 @@
 <body>
   <header>
     <h1>StockControl</h1>
-    <nav id="menuRol"></nav>
+    <nav id="menuRol" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/productos.html">Productos</a>
+      <a href="/movimientos.html">Movimientos</a>
+    </nav>
   </header>
 
   <main>
@@ -27,9 +31,18 @@
         <h3>Productos con bajo stock</h3>
         <p id="bajoStock">0</p>
       </article>
+      <article class="card">
+        <h3>Valor total del inventario</h3>
+        <p id="valorTotalInventario">$0.00</p>
+      </article>
     </section>
-    <section id="alertasStock" class="panel-card" style="margin-top:1rem;">
-      <!-- Aquí se mostrarán alertas de productos con stock bajo -->
+    <section class="panel-card" aria-labelledby="alerts-title">
+      <h2 id="alerts-title">Alertas de stock bajo</h2>
+      <div id="alertasStock" aria-live="polite"></div>
+    </section>
+    <section class="panel-card" aria-labelledby="activity-title">
+      <h2 id="activity-title">Últimos movimientos</h2>
+      <ul id="ultimosMovimientos" aria-live="polite"></ul>
     </section>
   </main>
 

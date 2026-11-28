@@ -224,6 +224,7 @@ async function cargarUsuarios() {
 function renderDashboard(productos, movimientos) {
   const totalProductos = document.getElementById('totalProductos');
   const totalInventario = document.getElementById('totalInventario');
+  const valorTotalInventario = document.getElementById('valorTotalInventario');
   const bajoStock = document.getElementById('bajoStock');
   const alertasStock = document.getElementById('alertasStock');
   const ultimosMovimientos = document.getElementById('ultimosMovimientos');
@@ -232,10 +233,20 @@ function renderDashboard(productos, movimientos) {
 
   const total = productos.length;
   const inventario = productos.reduce((acum, p) => acum + Number(p.cantidad), 0);
+  const valorTotal = productos.reduce(
+    (acum, p) => acum + Number(p.precio || 0) * Number(p.cantidad || 0),
+    0
+  );
   const stockBajo = productos.filter((p) => Number(p.cantidad) < 5).length;
 
   totalProductos.textContent = total;
   totalInventario.textContent = inventario;
+  if (valorTotalInventario) {
+    valorTotalInventario.textContent = new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN'
+    }).format(valorTotal);
+  }
   bajoStock.textContent = stockBajo;
 
   // Mostrar alertas detalladas para productos con stock bajo
